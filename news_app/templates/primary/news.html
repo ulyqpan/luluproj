@@ -1,0 +1,19 @@
+{% extends '../base.html' %} {% load static %} {% block content %}
+<div class="container">
+  <a onclick="javascript:history.back();return false;" class="btn_back"><i class="fa-solid fa-arrow-left"></i></a>
+  <div class="room-row">
+    {% if latest_news %} {% for i in latest_news %}
+    <div class="card">
+      <div class="img">
+        <img src="{{ i.image }}" alt="icon" />
+      </div>
+      <h1 class="head">{{ i.title }}</h1>
+      <div class="card-details">
+        <p class="news-date">{{ i.created_at }}</p>
+        <a href="{% url 'news_detail_page' i.pk %}" class="btn_news">Подробнее</a>
+      </div>
+    </div>
+    {% endfor %} {% else %} Статьи не найдены {% endif %}
+  </div>
+</div>
+{% endblock %}

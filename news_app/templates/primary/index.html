@@ -1,0 +1,39 @@
+{% extends '../base.html' %} {% load static %} {% block content %}
+
+<section class="home">
+  <div class="container">
+    <h1 class="home-title">Основное</h1>
+    <p class="home-desc">
+      Майнкрафт (англ. Minecraft) - это популярная видеоигра, которую разработала и выпустила компания Mojang Studios, а позднее приобрела корпорация Microsoft. Игра представляет собой песочницу с открытым миром, где игроки могут строить и разрушать различные блоки в трёхмерном пространстве. 
+
+В основном режиме игры, известном как "Выживание" (Survival), игроки должны добывать ресурсы и создавать предметы, чтобы выжить и защититься от враждебных существ, таких как зомби, скелеты и криперы. 
+
+Также существуют режимы "Творчество" (Creative), где игрокам доступны неограниченные ресурсы и возможности для строительства, и "Приключение" (Adventure), в котором игроки могут играть согласно определенным правилам и целям, заданным создателем мира.
+
+Майнкрафт стал культовой игрой благодаря своей свободе действий, богатству возможностей для творчества и огромному сообществу игроков, создающих и делящихся своими удивительными проектами.
+    </p>
+    <a href="{% url 'news_page' %}" class="btn">Версии</a>
+  </div>
+</section>
+
+<section class="room">
+  <div class="container">
+    <h2 class="room-title">Последние версии</h2>
+    <div class="room-row">
+      {% if latest_news %} {% for i in latest_news %}
+      <div class="card">
+        <div class="img">
+          <img src="{{ i.image }}" alt="icon" />
+        </div>
+        <h1 class="head">{{ i.title }}</h1>
+        <div class="card-details">
+          <p class="news-date">{{ i.created_at }}</p>
+          <a href="{% url 'news_detail_page' i.pk %}" class="btn_news">Подробнее</a>
+        </div>
+      </div>
+      {% endfor %} {% else %} Статьи не найдены {% endif %}
+    </div>
+  </div>
+</section>
+
+{% endblock %}
